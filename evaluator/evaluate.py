@@ -5,6 +5,7 @@ import re
 import timechecker
 
 result=dict()       #stores the result
+response=dict()
 testresult=list()
 exectime=list()
 
@@ -105,18 +106,21 @@ def evaluateC(sourcepath,testlist,timelimit):
   os.system('chmod 777 files/temp/temp.c')                 #granting all permissions to the temp 
   os.system('gcc -std=c99 -o files/temp/a.out files/temp/temp.c')    # compiling the C code
 
-
   #creating output file and comparing with the sample if a.out is generated
   if(os.path.exists('files/temp/a.out')):
      for i in testlist:
        inputpath=i['input']
        outputpath=i['output']
        runcmd='files/temp/./a.out <' + inputpath +  '> files/temp/output.out'
-       response=timechecker.execute(runcmd,timelimit)
+       response=timechecker.execute(runcmd, 'files/temp/./a.out', timelimit)
        # response={'status':'ok/timeexceeded/runtimeerror','executiontime':'time/-1'}
+       #print response
        if response['run_status']=="ok":
          checkOutput('files/temp/output.out',outputpath)
          exectime.append(response['runtime']) 
+       else:
+         testresult.append(response['run_status'])
+         exectime.append(response['runtime'])
      result['status']=testresult
      result['executiontime']=exectime
 
