@@ -38,9 +38,13 @@ h2 span{
 a{
     text-decoration:none;
 }
+
+.form{
+}
 .form ul, li{
     list-style:none;    
 }
+
 .form .errorlist{
     font-size:10px;
     color:red;

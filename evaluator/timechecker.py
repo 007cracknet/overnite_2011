@@ -66,7 +66,7 @@ def execute(command, command1, t0):
         #print "Stopped    :" + str(has_stopped)
         #print "Status     :" + str(run_status)        
         
-        dic = {}	
+        dic = dict()	
         dic['run_status'] = run_status
         dic['runtime'] = runtime
         
@@ -76,5 +76,4 @@ def execute(command, command1, t0):
 
 # to test this code, just enter a valid command in run below and a time u require in seconds	
 if __name__ == "__main__":
-    execute("python abc1.py", 10, "./abc.py")
-    
+    execute("python abc1.py", "python abc1.py", 10)    

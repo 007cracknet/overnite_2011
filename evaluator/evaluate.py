@@ -115,12 +115,13 @@ def evaluateC(sourcepath,testlist,timelimit):
        response=timechecker.execute(runcmd, 'files/temp/./a.out', timelimit)
        # response={'status':'ok/timeexceeded/runtimeerror','executiontime':'time/-1'}
        #print response
-       if response['run_status']=="ok":
-         checkOutput('files/temp/output.out',outputpath)
-         exectime.append(response['runtime']) 
-       else:
-         testresult.append(response['run_status'])
-         exectime.append(response['runtime'])
+
+     if response['run_status']=="ok":
+       checkOutput('files/temp/output.out',outputpath)
+       exectime.append(response['runtime']) 
+     else:
+       testresult.append(response['run_status'])
+       exectime.append(response['runtime'])
      result['status']=testresult
      result['executiontime']=exectime
 

@@ -1,16 +1,15 @@
 from main.models import *
 from django.contrib import admin
 
-class InputOutPutInline(admin.TabularInline):
-	model = InputOutput
+class TestCaseInline(admin.TabularInline):
+	model = TestCase
 	extra = 1
 class ProblemAdmin(admin.ModelAdmin):
-    inlines = [InputOutPutInline]
-    list_display = ('title','id')
+    inlines = [TestCaseInline]
     search_fields = ['title', 'question']
     
 class SubmissionAdmin(admin.ModelAdmin):
-    list_display = ('problem','program','status','result','id')
+    list_display = ('problem','user', 'time','program','status','result','id')
     list_filter = ['time']
     search_fields = ['problem']
     date_hierarchy = 'time'
